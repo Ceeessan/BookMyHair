@@ -1,5 +1,128 @@
 header {
+    display:flex;
+    flex-direction:row;
+    justify-content: space-around;
+    align-items:center;
+    text-align: center;
     width: 100%;
-    height: 2rem;
-    background-color: beige;
+    height: 6rem;
+    margin-top: 1rem;
+    box-sizing: border-box;
+
+    #logoDiv{
+
+        #logo{
+            width: 5rem;
+            height:5rem;
+            border-radius: 50%;
+        }
+    }
+
+    nav{
+        justify-content: space-between;
+        max-width: 30%;
+
+        .nav-link{
+            position: relative;
+            padding: 0.5rem;
+            text-decoration: none;
+            color: black;
+            cursor:pointer;
+            display: inline-block;
+
+            &::after {
+                content: "";
+                position:absolute;
+                left:50%;
+                bottom:0;
+                transform: translateX(-50%);
+                height: 0.5px;
+                width:0;
+                background-color:black;
+                transition: width 0.5s ease;
+            }
+
+            &:hover::after {
+                width: 70%;
+            }
+        }
+    }
+
+    nav .nav-link.active::after {
+        width: 100%;
+    }
+}
+
+#burgerMenu{
+    display:none;
+}
+
+#bottomBorder{
+    margin:auto;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    text-align:center;
+    height: 1px;
+    background-color: rgb(146, 143, 143);
+    width: 90%;
+    margin-top: 1rem;
+}
+
+@media (max-width: 760px) {
+    nav{
+        position: fixed;
+        top:0px;
+        right: 0;
+        align-items: flex-start;
+        text-align: left;
+        background-color: white;
+        flex-direction: column;
+        width: 100%;
+        height: 20rem;
+        padding-top:7rem;
+        padding-bottom: 3rem;
+        padding-left: 1.5rem;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        z-index:999;
+        display:flex;
+
+        &.open{
+            display:flex;
+            z-index: 999;
+            transform: translateX(0);
+        }
+
+        .nav-link{
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+        }
+    }
+
+    #burgerMenu{
+        position:relative;
+        display:block;
+        font-size: 2.5rem;
+        cursor: pointer;
+        background-color: transparent;
+        color: rgb(108, 108, 108);
+        z-index: 1000;
+        padding-bottom: 1.6rem;
+    }
+
+    .icon {
+        position: absolute;
+        font-size: 2.5rem;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+        line-height: 1;
+      }
+      
+      .icon.visible {
+        opacity: 1;
+        pointer-events: auto;
+      }
 }
