@@ -1,0 +1,58 @@
+main{
+    margin-bottom: 3rem;
+
+    .welcome-section{
+        display:flex;
+        flex-direction: column;
+        height: auto;
+        line-height: 2.2;
+        max-width:35rem;
+        justify-content: space-between;
+        text-align:center;
+        align-items:center;
+        padding-top: 3rem;
+        margin:auto;
+
+        #welcome-text{
+            font-weight:400;
+            font-size:24px;
+        }
+        
+    }
+
+    .hair-treatment-text{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        margin:auto;
+        height: auto;
+        max-width: 25rem;
+        margin-top:3rem;
+        
+
+        p{
+            font-size:18px;
+            text-align:center;
+            padding:2rem;
+            line-height: 1.6;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background-color: #bfbcb7;
+            color:white;
+        }
+    }
+
+    @media (max-width: 760px) {
+        .welcome-section{
+            max-width: 20rem;
+            line-height: 1.8;
+
+            #welcome-text{
+                font-size: 18px;
+            }
+        }
+
+        .hair-treatment-text{
+            max-width: 18rem;
+        }
+    }
+}

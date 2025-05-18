@@ -1,0 +1,65 @@
+.find-us-banner {
+    background-image: url('/assets/backgroundTexture.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 28rem;
+    margin-top: 4rem;
+    position:relative;
+
+    .overlay{
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+    }
+
+    .center-banner-content{
+        position:relative;
+        z-index: 2;
+        display:flex;
+        justify-content:center;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        height: 100%;
+
+        p{
+            color:rgb(232, 232, 232);
+            font-size:20px;
+            font-size: 400;
+            width: 40rem;
+            padding: 1rem;
+
+            #phone-nr{
+                display:block;
+                font-weight:400;
+                padding:0.5rem;
+                font-size: 28px;
+            }
+        }
+    }
+
+    .booking-btn{
+        margin-top:1.5rem;
+    }
+
+    @media (max-width: 760px) {
+        .center-banner-content{
+            max-width: 15rem;
+            margin:auto;
+
+            p {
+                width: 100%;    
+                font-size: 16px; 
+                padding: 0.5rem;
+
+                #phone-nr{
+                    font-size: 20px;
+                }
+              }
+        }
+    }
+}

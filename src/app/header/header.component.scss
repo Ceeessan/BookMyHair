@@ -5,28 +5,31 @@ header {
     align-items:center;
     text-align: center;
     width: 100%;
-    height: 6rem;
-    margin-top: 1rem;
-    box-sizing: border-box;
+    height: 8rem;
+    background-color: #bfbcb7;
+    // position: fixed;
+    // z-index: 1000;
 
     #logoDiv{
+        width: 50%;
 
         #logo{
-            width: 5rem;
-            height:5rem;
-            border-radius: 50%;
+            color: rgb(111, 105, 102);
+            font-size:34px;
+            font-weight: 600;
         }
     }
 
     nav{
         justify-content: space-between;
-        max-width: 30%;
+        width: 50%;
 
         .nav-link{
             position: relative;
             padding: 0.5rem;
+            font-size: 24px;
             text-decoration: none;
-            color: black;
+            color: white;
             cursor:pointer;
             display: inline-block;
 
@@ -38,7 +41,7 @@ header {
                 transform: translateX(-50%);
                 height: 0.5px;
                 width:0;
-                background-color:black;
+                background-color: rgb(111, 105, 102);
                 transition: width 0.5s ease;
             }
 
@@ -64,65 +67,71 @@ header {
     align-items:center;
     text-align:center;
     height: 1px;
-    background-color: rgb(146, 143, 143);
+    background-color: rgb(111, 105, 102);
     width: 90%;
     margin-top: 1rem;
 }
 
 @media (max-width: 760px) {
-    nav{
-        position: fixed;
-        top:0px;
-        right: 0;
-        align-items: flex-start;
-        text-align: left;
-        background-color: white;
-        flex-direction: column;
-        width: 100%;
-        height: 20rem;
-        padding-top:7rem;
-        padding-bottom: 3rem;
-        padding-left: 1.5rem;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-        transform: translateX(100%);
-        transition: transform 0.3s ease-in-out;
-        z-index:999;
-        display:flex;
 
-        &.open{
+    header{
+        nav{
+            position: fixed;
+            top:0px;
+            right: 0;
+            align-items: flex-start;
+            text-align: left;
+            background-color: #bfbcb7;
+            flex-direction: column;
+            width: 90%;
+            height: 20rem;
+            padding-top:7rem;
+            padding-bottom: 3rem;
+            padding-left: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+            z-index:999;
             display:flex;
-            z-index: 999;
-            transform: translateX(0);
+    
+            &.open{
+                display:flex;
+                z-index: 999;
+                width: 20rem;
+                transform: translateX(0);
+            }
+    
+            .nav-link{
+                padding: 1rem 2rem;
+                font-size: 1.2rem;
+            }
         }
-
-        .nav-link{
-            padding: 1rem 2rem;
-            font-size: 1.2rem;
+    
+        #burgerMenu{
+            position:relative;
+            display:block;
+            font-size: 2.5rem;
+            cursor: pointer;
+            background-color: transparent;
+            color: rgb(108, 108, 108);
+            z-index: 1000;
+            padding-bottom: 1.6rem;
+            padding-right: 2rem;
         }
+    
+        .icon {
+            position: absolute;
+            font-size: 2.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            line-height: 1;
+          }
+          
+          .icon.visible {
+            opacity: 1;
+            pointer-events: auto;
+          }
     }
-
-    #burgerMenu{
-        position:relative;
-        display:block;
-        font-size: 2.5rem;
-        cursor: pointer;
-        background-color: transparent;
-        color: rgb(108, 108, 108);
-        z-index: 1000;
-        padding-bottom: 1.6rem;
-    }
-
-    .icon {
-        position: absolute;
-        font-size: 2.5rem;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        pointer-events: none;
-        line-height: 1;
-      }
-      
-      .icon.visible {
-        opacity: 1;
-        pointer-events: auto;
-      }
+    
 }
