@@ -1,10 +1,52 @@
 footer{
     display:flex;
     justify-content:center;
+    flex-direction: column;
     width: 100%;
-    height: 10rem;
+    height: auto;
     background-color: rgb(82, 80, 79);
     align-items: center;
     text-align:center;
-    color:white;
+    color:rgb(234, 226, 218);
+
+    ul{
+        padding-top: 2rem;
+        padding-bottom: 3rem;
+    }
+
+    label {
+        font-weight: 500;
+    }
+
+    li{
+        list-style:none;
+        padding: 0.8rem;
+        font-size: 20px;
+    }
+
+    
+    .icon-container {
+        display:flex;
+        flex-direction: row;
+        justify-content:center;
+
+        #fb{
+            color:rgb(234, 226, 218);
+            width: 1.5rem;
+            height: auto;
+            cursor: pointer;
+        }
+
+        #instagram{
+            color:rgb(234, 226, 218);
+            width: 1.5rem;
+            height: auto;
+            cursor: pointer;
+        }
+    }
+
+    #created{
+        padding-bottom: 1rem;
+        color:rgb(234, 226, 218);
+    }
 }

@@ -1,0 +1,67 @@
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 4px solid #c07fb0;
+    text-align:center;
+    max-width:60rem;
+    height: auto;
+    padding: 1rem;
+    border-radius: 3%;
+    margin:auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+    #border-container{
+        background-color: #bfbcb7;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        border-radius: 3%;
+    
+        .about-me{
+            font-weight: 600;
+            font-size: 32px;
+            align-items: center;
+            text-align: center;
+            padding-bottom: 2rem;
+            padding-top:1rem;
+        }
+    
+        div{
+            text-align: center;
+        
+            #portrait{
+                width: 15rem;
+                height: auto;
+                border-radius: 50%;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+                border: 4px solid #c07fb0;
+                padding: 8px;
+            }
+    
+            #name{
+                padding-top:2rem;
+                padding-bottom:1rem;
+                font-weight: 400;
+            }
+    
+            #aboutMe{
+                width: 30rem;
+                line-height: 23px;
+                text-align:center;
+                margin:auto;
+                padding-bottom: 2rem;
+       
+            span{
+                font-weight: 400;
+                font-size:18px;
+                color: rgb(111, 105, 102);
+            }   
+            }
+        }
+    }
+}
+
+@media (max-width: 760px) {
+    section{
+        margin:1rem;
+    }
+}
