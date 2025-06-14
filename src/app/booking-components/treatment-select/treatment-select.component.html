@@ -1,0 +1,48 @@
+<div class="treatment-container">
+    <label class="choose-treatment-label">Välj Behandling</label>
+    
+    <ul class="treatment-list">
+        <li *ngFor="let treatment of treatments" >
+            <div (click)="onTreatmentChange(treatment.name)" class="treatment-list-name">
+                {{treatment.name}}
+            </div>
+
+            <ul *ngIf="selectedTreatment === treatment.name" 
+            @expandCollapse
+            class="treatment-list-subOption">
+                <li *ngFor="let option of selectedSubOptions" (click)="selectedSubOption = option" class="treatment-list-subOption-name">
+                    <div class="subOption-container">
+                        <div id="subOptionName">
+                            {{ option.name }}
+                        </div>
+                         <div class="subOption-time-cost-container">
+                            <div>
+                                <div class="time-cost-section">
+                                    <div id="subOptionTime">
+                                        {{ option.time }} 
+                                    </div>
+                                    <div id="subOptionCost">
+                                        {{ option.cost }} kr
+                                    </div>
+                                </div>
+                             </div> 
+                             <button
+                             [ngClass]="{ 'selected' : selectedSubOption === option}" 
+                             id="chooseTreatmentBtn"
+                             (click)="selectTreatmentBtn(option, $event)"
+                             >Välj</button>
+                        </div> 
+                    </div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <app-button 
+    [text] = "'Nästa steg'"
+    [color]= "'primary'"
+    (click)="goToDateTime()"
+    id="goToBookingBtn"> 
+    </app-button>
+
+</div>
+

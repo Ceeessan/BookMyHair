@@ -1,1 +1,16 @@
-<p>booking works!</p>
+<div>
+    <div 
+    *ngIf="currentStep === 'treatment'"
+    @slideLeft
+    class="step treatment-step">
+    <app-treatment-select (nextStep)="goToDateTime()"></app-treatment-select>
+    </div>
+
+    <div
+    *ngIf="currentStep === 'dateTime'"
+    @slideRight
+    class="step datetime-step">
+    <app-date-time-select></app-date-time-select>
+    </div>
+</div>
+

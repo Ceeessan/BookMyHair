@@ -1,0 +1,110 @@
+.treatment-container {
+    display:flex;
+    flex-direction: column;
+    margin:1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 5rem;
+    background-color: rgb(243, 247, 253);
+
+    .choose-treatment-label{
+        padding:1rem;
+        background-color: #5296b4;
+        color: white;
+        font-weight: 400;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        letter-spacing: 0.7px;
+        margin-bottom: 1rem;
+    }
+
+    .treatment-list{
+        list-style:none;
+    
+        .treatment-list-name{
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background-color: rgb(232, 239, 248);
+            margin-bottom:2px;
+            padding:0.5rem;
+            font-weight: 400;
+            cursor:pointer;
+        }
+
+        .treatment-list-subOption{
+            list-style:none;
+
+            .treatment-list-subOption-name{
+                padding: 0.1rem;
+                padding-top: 1rem;
+
+                .subOption-container{
+                    margin-left: 1rem;
+                    display:flex;
+                    flex-direction: column;
+
+                    #subOptionName{
+                        font-size: 16px;
+                        font-weight: 400;
+                    }
+
+                    .subOption-time-cost-container{
+                        padding-bottom: 1rem;
+                        display:flex;
+                        flex-direction: row;     
+                        justify-content: space-between;  
+                        border-bottom: 0.5px solid white; 
+                                
+                        .time-cost-section{
+                            display:flex;
+                            flex-direction:row;
+                            width: 7rem;
+                            justify-content: space-between;
+                            padding-top:0.5rem;
+                            
+
+                            #subOptionTime, #subOptionCost{
+                                color: rgb(101, 165, 204);
+                                font-weight: 400;
+                                font-size: 14px;
+                            }
+                        }
+
+                        #chooseTreatmentBtn:not(.selected){
+                            width:4rem;
+                            height: 2rem;;
+                            border: none;
+                            border-radius: 2px;
+                            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                            background-color:#5a7d9a;
+                            color: white;
+                            font-weight: 400;
+                            letter-spacing: 0.5px;
+                            margin-right: 1rem;
+                            cursor:pointer;
+
+
+                        }
+                        .selected {
+                            width:4rem;
+                            height: 2rem;;
+                            border: none;
+                            border-radius: 2px;
+                            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                            background-color:#264e6e;
+                            color: white;
+                            font-weight: 400;
+                            letter-spacing: 0.5px;
+                            margin-right: 1rem;
+                            cursor:pointer;
+                          }
+                    }
+                }
+            }
+        }
+    }
+
+    #goToBookingBtn{
+        display:flex;
+        justify-content:center;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+    }
+}
