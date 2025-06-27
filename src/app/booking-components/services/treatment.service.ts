@@ -7,7 +7,7 @@ import { TreatmentOption } from '../../models/treatment-option.model';
   providedIn: 'root'
 })
 export class TreatmentService {
-  private apiUrl = "http://localhost:5000/api/treatments";
+  private apiUrl = 'https://bookmyhair-backend.onrender.com/api/treatments';
 
   constructor(private http: HttpClient) { }
 
