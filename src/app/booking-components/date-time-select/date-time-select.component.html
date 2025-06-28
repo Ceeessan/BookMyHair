@@ -1,5 +1,26 @@
 <div class="date-time-container">
 
     <full-calendar #calendar [options]="calendarOptions"></full-calendar>
+
+    <div *ngIf="!isLoaded" class="loader">
+        Laddar tider...
+      </div>
+
+    <div class="available-times" *ngIf="selectedDate">
+        <h3> Tider för {{ selectedDate }}:</h3>
+        <div *ngIf="selectedTimes.length > 0; else noTimes">
+            <button *ngFor="let time of selectedTimes"> {{time}} </button>
+        </div>
+        <ng-template #noTimes>
+            <p> Inga tider tillgängliga. </p>
+        </ng-template>
+    </div>
+
+    <app-button 
+    [text] = "'Nästa steg'"
+    [color]= "'primary'"
+    (click)="goToFinnishBooking()"
+    id="goToBookingBtn"> 
+    </app-button>
     
 </div>

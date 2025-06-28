@@ -1,0 +1,21 @@
+<div>
+    <h3> Slutför din bokning</h3>
+
+    <p>Vald behandling:</p>
+    <p> Datum och tid: </p>
+
+    <form>
+        <label>Ditt namn: </label>
+        <input type="text">
+        <label>Din Email: </label>
+        <input type="text">
+        <label>Något mer vi behöver veta? </label>
+        <textarea rows="4" cols="30"></textarea>
+        <app-button
+        [text] = "'Boka tid'"
+        [color]= "'primary'"
+        (click)="bookTime()"
+        id="bookTimeBtn"> 
+        </app-button>
+    </form>
+</div>

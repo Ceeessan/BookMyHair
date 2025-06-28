@@ -3,11 +3,12 @@ import { TreatmentSelectComponent } from '../booking-components/treatment-select
 import { DateTimeSelectComponent } from '../booking-components/date-time-select/date-time-select.component';
 import { CommonModule } from '@angular/common';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { FinnishBookingComponent } from '../booking-components/finnish-booking/finnish-booking.component';
 
 @Component({
   selector: 'app-booking',
   standalone: true,
-  imports: [TreatmentSelectComponent, DateTimeSelectComponent, CommonModule],
+  imports: [TreatmentSelectComponent, DateTimeSelectComponent, CommonModule, FinnishBookingComponent],
   templateUrl: './booking.component.html',
   styleUrls: ['./booking.component.scss'],
   animations: [
@@ -18,6 +19,15 @@ import { animate, style, transition, trigger } from '@angular/animations';
       ]),
       transition(':leave', [
         animate('400ms ease-in', style({ transform: 'translateX(-100%)', opacity: 0 }))
+      ])
+    ]),
+    trigger('slideRight', [
+      transition(':enter', [
+        style({ transform: 'translateX(-100%)', opacity: 0 }),
+        animate('400ms ease-out', style({ transform: 'translateX(0)', opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('400ms ease-in', style({ transform: 'translateX(100%)', opacity: 0 }))
       ])
     ])
   ],
@@ -35,4 +45,7 @@ export class BookingComponent {
     }, 50)
   }
 
+  goToFinnishBooking() {
+    this.currentStep = 'finnishBooking';
+  }
 }

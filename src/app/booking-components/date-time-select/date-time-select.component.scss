@@ -4,5 +4,48 @@
     margin:1rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     margin-bottom: 5rem;
-    background-color: rgb(243, 247, 253);
+    background-color: rgb(255, 255, 255);
+
+    ::ng-deep .fc {
+        font-family: 'roboto';
+        background-color: white;
+        max-height: 12rem;
+        border-radius: 5px;
+        padding: 1rem;
+
+        ::ng-deep .fc-today-button{
+            display:none;
+        }
+
+        ::ng-deep .fc-button {
+            padding: 0.4rem 1rem;
+          }
+
+        ::ng-deep .fc-timeGridweek-button{
+            display:none;
+        }
+
+        ::ng-deep .fc-day-today {
+            background-color: rgb(243, 247, 253);
+          }
+
+          ::ng-deep .fc-toolbar-title {
+            font-weight: 600;
+            color: #4b4b4b;
+          }
+
+      }
+
+      .available-times{
+        padding: 1rem;
+      }
+
+      #goToBookingBtn{
+        display: flex;
+        flex-direction: center;
+        text-align:center;
+        align-items: center;
+        margin:auto;
+        margin-bottom: 2rem;
+      }
 }

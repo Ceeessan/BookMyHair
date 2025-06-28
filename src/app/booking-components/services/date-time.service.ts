@@ -14,6 +14,9 @@ export class DateTimeService {
   constructor( private http: HttpClient) { }
 
   getAvailableTimes(): Observable<DateTimeOption[]> {
+    console.log('Hämtar tider från API med URL:', this.apiUrl);
+    
+
     return this.http.get<DateTimeOption[]>(this.apiUrl)
   }
 }
