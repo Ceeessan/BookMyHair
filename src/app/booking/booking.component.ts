@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { TreatmentSelectComponent } from '../booking-components/treatment-select/treatment-select.component';
 import { DateTimeSelectComponent } from '../booking-components/date-time-select/date-time-select.component';
 import { CommonModule } from '@angular/common';
@@ -25,8 +25,14 @@ import { animate, style, transition, trigger } from '@angular/animations';
 export class BookingComponent {
   currentStep: 'treatment' | 'dateTime' | 'finnishBooking' = 'treatment';
 
+  @ViewChild(DateTimeSelectComponent)
+  dateTimeComponent!: DateTimeSelectComponent;
+
   goToDateTime() {
     this.currentStep = 'dateTime';
+    setTimeout(() => {
+      this.dateTimeComponent?.calendarComponent?.getApi().updateSize();
+    }, 50)
   }
 
 }
