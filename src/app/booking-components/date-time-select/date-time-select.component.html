@@ -1,4 +1,5 @@
 <div class="date-time-container">
+    <app-arrow-button (back)="goBack()"></app-arrow-button>
 
     <full-calendar #calendar [options]="calendarOptions"></full-calendar>
 
@@ -7,9 +8,12 @@
       </div>
 
     <div class="available-times" *ngIf="selectedDate">
-        <h3> Tider för {{ selectedDate }}:</h3>
+        <h3> Tider för {{ formatDate(selectedDate) }}:</h3>
         <div *ngIf="selectedTimes.length > 0; else noTimes">
-            <button *ngFor="let time of selectedTimes"> {{time}} </button>
+            <button *ngFor="let time of selectedTimes"
+            [ngClass]="{active: selectedTime === time}"
+            (click)="selectTime(time)"
+            > {{time}} </button>
         </div>
         <ng-template #noTimes>
             <p> Inga tider tillgängliga. </p>
@@ -18,9 +22,9 @@
 
     <app-button 
     [text] = "'Nästa steg'"
-    [color]= "'primary'"
+    [color]= "selectedDate && selectedTime ? 'primary' : 'secondary'"
+    [disabled]="!(selectedDate && selectedTime)"
     (click)="goToFinnishBooking()"
     id="goToBookingBtn"> 
     </app-button>
-    
 </div>

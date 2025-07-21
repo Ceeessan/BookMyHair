@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { TreatmentService } from '../services/treatment.service';
 import { TreatmentOption } from '../../models/treatment-option.model';
 import { ButtonComponent } from '../../components/button/button.component';
+import { BookingDataService } from '../services/booking-data.service';
 
 @Component({
   selector: 'app-treatment-select',
@@ -42,8 +43,10 @@ export class TreatmentSelectComponent {
   selectedTreatment: string | null = null;
   selectedSubOption: {name:string; time: string; cost: number} | null = null;
 
-
-  constructor(private treatmentService: TreatmentService){}
+  constructor(
+    private treatmentService: TreatmentService,
+    private bookingDataService: BookingDataService
+  ){}
 
   treatments: TreatmentOption[] = [];
 
@@ -76,14 +79,16 @@ export class TreatmentSelectComponent {
       this.selectedSubOption = option;
       console.log('Vald subOption, ', option);
 
+      const selectedTreatment = this.treatments.find(t => t.name === this.selectedTreatment);
+      if (selectedTreatment) {
+        this.bookingDataService.setTreatment(selectedTreatment._id, selectedTreatment.name, option.name)
+      }
   }
 
   goToDateTime() {
-
     if (!this.selectedSubOption) return;
     
     console.log('Going to date and time!');
     this.nextStep.emit();
-    
   }
 }

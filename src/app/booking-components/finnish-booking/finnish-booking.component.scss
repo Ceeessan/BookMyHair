@@ -1,0 +1,65 @@
+.booking-container{
+    display:flex;
+    flex-direction: column;
+    margin:1rem;
+    padding:1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 5rem;
+    background-color: rgb(255, 255, 255);
+
+    .confirm-booking-container{
+        background-color: rgb(243, 247, 253);
+        border-radius: 5px;
+        padding: 2rem;
+
+        .confirming-booking-header{
+            font-weight: 400;
+            font-size: 20px;
+            padding-bottom: 0.5rem;
+        }
+
+        .selected-treatment{
+            padding-bottom: 0.5rem;
+
+            .selected-treatment-strong{
+                font-weight: 400;
+            }
+        }
+
+        .form-container {
+
+            .input-fields{
+                display: flex;
+                flex-direction: column;
+                margin-top: 1rem;
+
+                .required-mark{
+                    color: rgb(149, 1, 1);
+                    padding-right: 2px;
+                }
+    
+                input{
+                    border: none;
+                    height: 2rem;
+                    margin-top: 0.5rem;
+                    
+                }
+
+                #message{
+                    resize: none; 
+                    overflow: auto;
+                    width: 100%;
+                    border: none;
+                    max-height: 8rem;
+                    margin-top: 0.5rem;
+                }
+            }
+
+            .button-container{
+                display:flex;
+                justify-content: center;
+                padding: 2rem;
+            }
+        }
+    }
+}

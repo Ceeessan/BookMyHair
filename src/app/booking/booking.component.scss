@@ -1,0 +1,20 @@
+.step-indicator {
+    display: flex;
+    justify-content:center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    gap: 1rem;
+
+    .step-dot {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        border:none;
+        background-color: rgb(243, 247, 253);
+        transition: background-color 0.3s ease;
+
+        &.active{
+            background-color: #5296b4;
+        }
+    }
+}

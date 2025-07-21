@@ -1,21 +1,75 @@
-<div>
-    <h3> Slutför din bokning</h3>
+<div class="booking-container">
+    <app-arrow-button (back)="goBack()"></app-arrow-button>
 
-    <p>Vald behandling:</p>
-    <p> Datum och tid: </p>
+    <div class="confirm-booking-container">
+        <div class="confirm-text">
+            <h3 class="confirming-booking-header"> Slutför din bokning</h3>
+        
+            <p class="selected-treatment"><strong class="selected-treatment-strong">Vald behandling:</strong> {{selectedTreatmentName}} - {{subOptionName}} </p>
+            <p class="selected-treatment"><strong class="selected-treatment-strong">Tid och datum:</strong> {{selectedDateTime}} </p>
+        </div>
+        
+        <div class="form-container">
+            <form 
+            (ngSubmit)="submitBooking()" #bookingForm="ngForm"
+            novalidate>
+                <div class="input-fields">
+                    <label for="name"><strong class="required-mark">*</strong>Ditt namn: </label>
+                    <input 
+                    id="name" 
+                    name="name" 
+                    [(ngModel)]="name" 
+                    #nameRef="ngModel"
+                    pattern="^[a-zA-ZåäöÅÄÖ\s\-]+$"
+                    required 
+                    type="text"/>
 
-    <form>
-        <label>Ditt namn: </label>
-        <input type="text">
-        <label>Din Email: </label>
-        <input type="text">
-        <label>Något mer vi behöver veta? </label>
-        <textarea rows="4" cols="30"></textarea>
-        <app-button
-        [text] = "'Boka tid'"
-        [color]= "'primary'"
-        (click)="bookTime()"
-        id="bookTimeBtn"> 
-        </app-button>
-    </form>
+                    <div *ngIf="nameRef.invalid && (nameRef.dirty || nameRef.touched)" class="error">
+                        <small *ngIf="nameRef.errors?.['required']">Namn är obligatoriskt.</small>
+                        <small *ngIf="nameRef.errors?.['pattern']">Namn får bara innehålla bokstäver och mellanslag.</small>
+                      </div>
+                </div>
+        
+                <div class="input-fields">
+                    <label for="email"><strong class="required-mark">*</strong>Din Email: </label>
+                    <input 
+                    id="email" 
+                    name="email" 
+                    type="email" 
+                    [(ngModel)]="email" 
+                    #emailRef="ngModel"
+                    required 
+                    type="text"/>
+                </div>
+
+                <div *ngIf="emailRef.invalid && (emailRef.dirty || emailRef.touched)" class="error">
+                    <small *ngIf="emailRef.errors?.['required']">E-post är obligatoriskt.</small>
+                    <small *ngIf="emailRef.errors?.['email']">Ange en giltig e-postadress.</small>
+                </div>
+        
+                <div class="input-fields">
+                    <label for="message">Något mer vi behöver veta? </label>
+                    <textarea
+                    id="message" 
+                    name="message" 
+                    [(ngModel)]="message" 
+                    rows="5" 
+                    cols="30"></textarea>
+                </div>
+                
+                <div class="button-container">
+                    <app-button
+                    [text] = "'Boka tid'"
+                    [color]= "name && email  ? 'primary' : 'secondary'"
+                    [disabled]="!(name && email)"
+                    id="bookTimeBtn"
+                    type="submit"> 
+                    </app-button>
+                </div>
+            </form>
+        </div>
+        
+            <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+            <div *ngIf="successMessage" class="success">{{ successMessage }}</div>
+    </div>
 </div>

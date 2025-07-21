@@ -1,4 +1,16 @@
 <div>
+    <div class="step-indicator">
+        <div class="step-dot"
+        [class.active]="currentStep === 'treatment'">
+        </div>
+        <div class="step-dot"
+        [class.active]="currentStep === 'dateTime'">
+        </div>
+        <div class="step-dot"
+        [class.active]="currentStep === 'finnishBooking'">
+        </div>
+    </div>
+
     <div 
     *ngIf="currentStep === 'treatment'"
     @slideLeft
@@ -10,14 +22,14 @@
     *ngIf="currentStep === 'dateTime'"
     @slideLeft
     class="step datetime-step">
-    <app-date-time-select (nextStep)="goToFinnishBooking()"></app-date-time-select>
+    <app-date-time-select (nextStep)="goToFinnishBooking()" (backStep)="onBackStepTreatment()"></app-date-time-select>
     </div>
 
     <div
     *ngIf="currentStep === 'finnishBooking'"
     @slideRight
     class="step finnishbooking-step">
-        <app-finnish-booking></app-finnish-booking>
+        <app-finnish-booking (backStep)="onBackStepDateTime()"></app-finnish-booking>
     </div>
 </div>
 

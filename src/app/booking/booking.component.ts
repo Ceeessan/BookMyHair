@@ -48,4 +48,12 @@ export class BookingComponent {
   goToFinnishBooking() {
     this.currentStep = 'finnishBooking';
   }
+
+  onBackStepDateTime() {
+    this.currentStep = 'dateTime';
+  }
+
+  onBackStepTreatment() {
+    this.currentStep = 'treatment';
+  }
 }

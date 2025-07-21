@@ -39,10 +39,9 @@
     </ul>
     <app-button 
     [text] = "'Nästa steg'"
-    [color]= "'primary'"
+    [color]= "selectedSubOption ? 'primary' : 'secondary'"
+    [disabled]="!selectedSubOption"
     (click)="goToDateTime()"
     id="goToBookingBtn"> 
     </app-button>
-
 </div>
-

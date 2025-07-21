@@ -1,4 +1,5 @@
 export interface TreatmentOption {
+    _id: string;
     name: string;
     subOptions?:  {
       name: string;
