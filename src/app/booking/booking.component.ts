@@ -3,12 +3,14 @@ import { TreatmentSelectComponent } from '../booking-components/treatment-select
 import { DateTimeSelectComponent } from '../booking-components/date-time-select/date-time-select.component';
 import { CommonModule } from '@angular/common';
 import { animate, style, transition, trigger } from '@angular/animations';
-import { FinnishBookingComponent } from '../booking-components/finnish-booking/finnish-booking.component';
+
+import { BookingConfirmationComponent } from '../booking-components/booking-confirmation/booking-confirmation.component';
+import { FinnishBookingComponent } from '../booking-components/finish-booking/finnish-booking.component';
 
 @Component({
   selector: 'app-booking',
   standalone: true,
-  imports: [TreatmentSelectComponent, DateTimeSelectComponent, CommonModule, FinnishBookingComponent],
+  imports: [TreatmentSelectComponent, DateTimeSelectComponent, CommonModule, FinnishBookingComponent, BookingConfirmationComponent],
   templateUrl: './booking.component.html',
   styleUrls: ['./booking.component.scss'],
   animations: [
@@ -33,7 +35,7 @@ import { FinnishBookingComponent } from '../booking-components/finnish-booking/f
   ],
 })
 export class BookingComponent {
-  currentStep: 'treatment' | 'dateTime' | 'finnishBooking' = 'treatment';
+  currentStep: 'treatment' | 'dateTime' | 'finnishBooking' | 'bookingConfirmation' = 'treatment';
 
   @ViewChild(DateTimeSelectComponent)
   dateTimeComponent!: DateTimeSelectComponent;
@@ -55,5 +57,9 @@ export class BookingComponent {
 
   onBackStepTreatment() {
     this.currentStep = 'treatment';
+  }
+
+  goToBookingConfirmation() {
+    this.currentStep = 'bookingConfirmation';
   }
 }

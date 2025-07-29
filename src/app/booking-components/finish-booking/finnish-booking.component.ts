@@ -6,6 +6,9 @@ import { BookingOption } from '../../models/booking.model';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ArrowButtonComponent } from '../../components/arrow-button/arrow-button.component';
+import { filter, take } from 'rxjs';
+import { ChangeDetectorRef } from '@angular/core';
+
 
 @Component({
   selector: 'app-finnish-booking',
@@ -16,6 +19,7 @@ import { ArrowButtonComponent } from '../../components/arrow-button/arrow-button
 })
 export class FinnishBookingComponent implements OnInit {
 
+@Output() nextStep = new EventEmitter<any>();
 @Output() backStep = new EventEmitter<void>();
 
 name ='';
@@ -26,20 +30,43 @@ selectedTreatmentId: string | null = null;
 selectedTreatmentName: string | null = null;
 subOptionName: string | null = null;
 selectedDateTime: string | null = null;
-
-successMessage ='';
+bookingConfirmation: string | null = null;
 errorMessage ='';
 
 constructor(
   private bookingDataService: BookingDataService,
   private bookingService: BookingService,
+  private cdr: ChangeDetectorRef
 ){}
 
 ngOnInit(): void {
-  this.selectedTreatmentId = this.bookingDataService.getTreatmentId();
-  this.selectedTreatmentName = this.bookingDataService.getTreatmentName();
-  this.subOptionName = this.bookingDataService.getSubOptionName();
-  this.selectedDateTime = this.bookingDataService.getTimeDate();
+  this.bookingDataService.getTreatmentId()
+  .pipe(
+    filter((id): id is string => id !== null), // vänta tills det finns
+    take(1)
+  )
+  .subscribe(id => this.selectedTreatmentId = id);
+
+this.bookingDataService.getTreatmentName()
+  .pipe(
+    filter((name): name is string => name !== null),
+    take(1)
+  )
+  .subscribe(name => this.selectedTreatmentName = name);
+
+this.bookingDataService.getSubOptionName()
+  .pipe(
+    filter((sub): sub is string => sub !== null),
+    take(1)
+  )
+  .subscribe(sub => this.subOptionName = sub);
+
+this.bookingDataService.getTimeDate()
+  .pipe(
+    filter((time): time is string => time !== null),
+    take(1)
+  )
+  .subscribe(time => this.selectedDateTime = time);
 }
 
 goBack() {
@@ -49,8 +76,6 @@ goBack() {
 submitBooking(): void {
   if (!this.selectedTreatmentId || !this.selectedDateTime || !this.name || !this.email) {
     this.errorMessage = 'Vänligen fyll i alla obligtoriska fält.';
-
-    console.log('book');
     return;
   }
 
@@ -64,15 +89,18 @@ submitBooking(): void {
 
   this.bookingService.bookAnAppointment(booking).subscribe({
     next: (res) => {
-      this.successMessage = 'Du har bokat din tid, välkommen!';
       this.errorMessage= '';
-      console.log('Booking saved', res);
+      console.log('Booking saved ', res);
+      this.goToBookingConfirmation();
     },
     error: (err) => {
       this.errorMessage = 'Något gick fel. Försök igen.';
-      this.successMessage= '';
       console.log(err);
     }
   });
+  }
+
+  goToBookingConfirmation(){
+    this.nextStep.emit();
   }
 }

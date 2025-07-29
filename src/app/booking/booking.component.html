@@ -9,6 +9,9 @@
         <div class="step-dot"
         [class.active]="currentStep === 'finnishBooking'">
         </div>
+        <div class="step-dot"
+        [class.active]="currentStep === 'bookingConfirmation'">
+        </div>
     </div>
 
     <div 
@@ -27,9 +30,19 @@
 
     <div
     *ngIf="currentStep === 'finnishBooking'"
-    @slideRight
+    @slideLeft
     class="step finnishbooking-step">
-        <app-finnish-booking (backStep)="onBackStepDateTime()"></app-finnish-booking>
+        <app-finnish-booking
+        (nextStep)="goToBookingConfirmation()"
+        (backStep)="onBackStepDateTime()"
+        ></app-finnish-booking>
+    </div>
+
+    <div
+    *ngIf="currentStep === 'bookingConfirmation'"
+    @slideLeft
+    class="step bookingConfirmation-step">
+        <app-booking-confirmation ></app-booking-confirmation>
     </div>
 </div>
 

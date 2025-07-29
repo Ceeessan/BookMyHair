@@ -19,4 +19,8 @@ export class BookingService {
 
     return this.http.post<BookingOption>(this.apiUrl, data);
   }
+
+  getBookedDates(): Observable<string[]> {
+    return this.http.get<string[]>(this.apiUrl);
+  }
 }

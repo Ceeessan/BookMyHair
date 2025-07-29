@@ -1,47 +1,48 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookingDataService {
 
-  treatmentId: string | null = null;
-  treatmentName: string | null = null;
-  subOptionName: string | null = null;
-  timeDate: string | null = null;
+  private treatmentIdSubject = new BehaviorSubject<string | null>(null);
+  private treatmentNameSubject = new BehaviorSubject<string | null>(null);
+  private subOptionNameSubject = new BehaviorSubject<string | null>(null);
+  private timeDateSubject = new BehaviorSubject<string | null>(null);
 
   setTreatment(treatmentId: string, treatmentName: string, subOptionName: string) {
-    this.treatmentId = treatmentId;
-    this.treatmentName = treatmentName;
-    this.subOptionName = subOptionName;
+    this.treatmentIdSubject.next(treatmentId);
+    this.treatmentNameSubject.next(treatmentName);
+    this.subOptionNameSubject.next(subOptionName);
 
     console.log('treatment chosen ', treatmentId, treatmentName, subOptionName);
   }
 
-  getTreatmentId(): string | null {
-    return this.treatmentId;
+  getTreatmentId(): Observable<string | null> {
+    return this.treatmentIdSubject.asObservable();
   }
 
-  getTreatmentName(): string | null {
-    return this.treatmentName;
+  getTreatmentName(): Observable<string | null> {
+    return this.treatmentNameSubject.asObservable();
   }
 
-  getSubOptionName(): string | null {
-    return this.subOptionName;
+  getSubOptionName(): Observable<string | null> {
+    return this.subOptionNameSubject.asObservable();
   }
 
   setTimeDate(dateTime: string) {
-    this.timeDate = dateTime;
+    this.timeDateSubject.next(dateTime);
     console.log('date and time chosen', dateTime);
   }
 
-  getTimeDate(): string | null {
-    return this.timeDate;
+  getTimeDate(): Observable<string | null> {
+    return this.timeDateSubject.asObservable();
   }
 
   clear() {
-    this.treatmentId = null;
-    this.treatmentName = null;
-    this.timeDate = null;
+    this.treatmentIdSubject.next(null);
+    this.treatmentNameSubject.next(null);
+    this.timeDateSubject.next(null);
   }
 }

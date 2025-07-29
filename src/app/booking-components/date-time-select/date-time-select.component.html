@@ -11,6 +11,8 @@
         <h3> Tider för {{ formatDate(selectedDate) }}:</h3>
         <div *ngIf="selectedTimes.length > 0; else noTimes">
             <button *ngFor="let time of selectedTimes"
+            [class.booked]="bookedDateTimes.includes(`${selectedDate} ${time}`)"
+            [disabled]="bookedDateTimes.includes(`${selectedDate} ${time}`)"
             [ngClass]="{active: selectedTime === time}"
             (click)="selectTime(time)"
             > {{time}} </button>

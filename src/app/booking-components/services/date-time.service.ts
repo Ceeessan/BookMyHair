@@ -12,16 +12,11 @@ export class DateTimeService {
 
   private apiUrl = 'http://localhost:5000/api/dateTime';
 
-
   constructor( private http: HttpClient) { }
 
   getAvailableTimes(): Observable<DateTimeOption[]> {
     console.log('Hämtar tider från API med URL:', this.apiUrl);
 
     return this.http.get<DateTimeOption[]>(this.apiUrl)
-  }
-
-  getBookedDates(): Observable<string[]> {
-    return this.http.get<string[]>(this.apiUrl);
   }
 }

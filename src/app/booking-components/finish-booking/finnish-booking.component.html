@@ -63,13 +63,13 @@
                     [color]= "name && email  ? 'primary' : 'secondary'"
                     [disabled]="!(name && email)"
                     id="bookTimeBtn"
-                    type="submit"> 
+                    type="submit"
+                    > 
                     </app-button>
                 </div>
             </form>
         </div>
         
-            <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
-            <div *ngIf="successMessage" class="success">{{ successMessage }}</div>
+        <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
     </div>
 </div>

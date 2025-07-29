@@ -10,6 +10,7 @@ import { CalendarOptions } from '@fullcalendar/core/index.js';
 import interactionPlugin from '@fullcalendar/interaction';
 import { ArrowButtonComponent } from '../../components/arrow-button/arrow-button.component';
 import { BookingDataService } from '../services/booking-data.service';
+import { BookingService } from '../services/booking.service';
 
 @Component({
   selector: 'app-date-time-select',
@@ -29,6 +30,7 @@ export class DateTimeSelectComponent implements OnInit {
   isLoaded = false;
   selectedTime: string | null = null;
   bookedDates: string[] = [];
+  bookedDateTimes: string[] = [];
 
   @Output() nextStep = new EventEmitter<any>();
 
@@ -36,11 +38,11 @@ export class DateTimeSelectComponent implements OnInit {
 
   constructor( 
     private dateTimeService: DateTimeService,
-    private bookingDataService: BookingDataService
+    private bookingDataService: BookingDataService,
+    private bookingService: BookingService
   ) {}
 
   ngOnInit() {
-
     this.calendarOptions = {
       plugins: [dayGridPlugin, interactionPlugin],
       initialView: 'dayGridWeek'
@@ -50,35 +52,40 @@ export class DateTimeSelectComponent implements OnInit {
       this.allAvailableTimes = times || [];
       this.isLoaded = true;
 
+    this.bookingService.getBookedDates().subscribe((bookedTimes: string[]) => {
       
-      this.calendarOptions = {
-        plugins: [dayGridPlugin, interactionPlugin],
-        initialView: 'dayGridWeek',
-        locales: [svLocale],
-        locale: 'sv',
-        headerToolbar: {
-          left: 'prev,next today',
-          center: 'title',
-          right: ''
-        },
-        validRange: {
-          start: new Date().toISOString().split('T')[0]
-        },
-        selectable:true,
-        weekends: true,
-        events: [],
-        dateClick: this.onDateClick.bind(this),
-        dayCellClassNames: (arg) => {
-          const dateStr = arg.date.toISOString().split('T')[0];
-          if (this.bookedDates.includes(dateStr)) {
-            return ['booked-date'];
-          }
-          return [];
-        }
-      };
-      this.onTodaysAppointment();
+      this.bookedDateTimes = bookedTimes;
+      console.log('hhaaaaaaaaa' + this.bookedDateTimes);
     });
-  }
+
+    this.calendarOptions = {
+      plugins: [dayGridPlugin, interactionPlugin],
+      initialView: 'dayGridWeek',
+      locales: [svLocale],
+      locale: 'sv',
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: ''
+      },
+      validRange: {
+        start: new Date().toISOString().split('T')[0]
+      },
+      selectable:true,
+      weekends: true,
+      events: [],
+      dateClick: this.onDateClick.bind(this),
+      dayCellClassNames: (arg) => {
+        const dateStr = arg.date.toISOString().split('T')[0];
+        if (this.bookedDates.includes(dateStr)) {
+          return ['booked-date'];
+        }
+        return [];
+      }
+    };
+    this.onTodaysAppointment();
+  });
+}
 
   formatDate(dateStr: string): string {
     const date = new Date(dateStr);
@@ -140,11 +147,19 @@ export class DateTimeSelectComponent implements OnInit {
       this.selectedTimes = match.times.filter(timeStr => {
         if (!isToday) return true;
 
-        const [hours, minutes] = timeStr.split(':').map(Number);
-        const timeAsDate = new Date(date);
-        timeAsDate.setHours(hours,minutes, 0, 0);
+        if(isToday) {
+          const [hours, minutes] = timeStr.split(':').map(Number);
+          const timeAsDate = new Date(date);
+          timeAsDate.setHours(hours,minutes, 0, 0);
 
-        return timeAsDate > currentTime;
+          if (timeAsDate <= currentTime) return false;
+        }
+
+        const fullDateTime = `${this.selectedDate} ${timeStr}`;
+        if(this.bookedDateTimes.includes(fullDateTime)) {
+          return false;
+        }
+        return true;
       });
     } else {
       this.selectedTimes = [];
