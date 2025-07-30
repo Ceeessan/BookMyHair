@@ -33,7 +33,6 @@ export class BookingDataService {
 
   setTimeDate(dateTime: string) {
     this.timeDateSubject.next(dateTime);
-    console.log('date and time chosen', dateTime);
   }
 
   getTimeDate(): Observable<string | null> {

@@ -52,7 +52,6 @@ export class TreatmentSelectComponent {
 
   ngOnInit() {
     this.treatmentService.getTreatments().subscribe({next: data => {
-      console.log(data);
       this.treatments = data},
       error: err => console.log("API error", err)
     })
@@ -77,7 +76,6 @@ export class TreatmentSelectComponent {
     event: MouseEvent){
       event.stopPropagation();
       this.selectedSubOption = option;
-      console.log('Vald subOption, ', option);
 
       const selectedTreatment = this.treatments.find(t => t.name === this.selectedTreatment);
       if (selectedTreatment) {
@@ -87,8 +85,6 @@ export class TreatmentSelectComponent {
 
   goToDateTime() {
     if (!this.selectedSubOption) return;
-    
-    console.log('Going to date and time!');
     this.nextStep.emit();
   }
 }

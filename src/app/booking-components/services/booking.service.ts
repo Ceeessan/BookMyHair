@@ -9,7 +9,6 @@ import { BookingOption } from '../../models/booking.model';
 export class BookingService {
 
   private apiUrl = 'https://bookmyhair-backend.onrender.com/api/booking';
-
   // private apiUrl = 'http://localhost:5000/api/booking';
 
   constructor( private http: HttpClient) { }

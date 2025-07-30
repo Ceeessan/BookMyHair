@@ -36,5 +36,4 @@ export class HomeComponent {
       this.slideInVisible = true;
     }
   }
-
 }

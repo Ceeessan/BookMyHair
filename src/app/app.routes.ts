@@ -7,5 +7,4 @@ export const routes: Routes = [
     { path: '', component : HomeComponent},
     { path: 'booking', component:BookingComponent},
     { path: 'cancel-appointment', component:CancelAppointmentComponent},
-    
 ];

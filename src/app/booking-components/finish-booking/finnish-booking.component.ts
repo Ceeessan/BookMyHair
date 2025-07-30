@@ -42,7 +42,7 @@ constructor(
 ngOnInit(): void {
   this.bookingDataService.getTreatmentId()
   .pipe(
-    filter((id): id is string => id !== null), // vänta tills det finns
+    filter((id): id is string => id !== null), 
     take(1)
   )
   .subscribe(id => this.selectedTreatmentId = id);
@@ -90,7 +90,6 @@ submitBooking(): void {
   this.bookingService.bookAnAppointment(booking).subscribe({
     next: (res) => {
       this.errorMessage= '';
-      console.log('Booking saved ', res);
       this.goToBookingConfirmation();
     },
     error: (err) => {

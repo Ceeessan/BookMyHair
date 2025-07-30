@@ -8,7 +8,6 @@ import { Observable } from 'rxjs';
 export class CancelAppointmentService  {
 
     private apiUrl = 'https://bookmyhair-backend.onrender.com/api/booking/cancel';
-
     // private apiUrl = 'http://localhost:5000/api/booking/cancel';
 
   constructor(private http: HttpClient) { }

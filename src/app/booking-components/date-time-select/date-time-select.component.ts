@@ -55,7 +55,6 @@ export class DateTimeSelectComponent implements OnInit {
     this.bookingService.getBookedDates().subscribe((bookedTimes: string[]) => {
       
       this.bookedDateTimes = bookedTimes;
-      console.log('hhaaaaaaaaa' + this.bookedDateTimes);
     });
 
     this.calendarOptions = {
@@ -102,10 +101,7 @@ export class DateTimeSelectComponent implements OnInit {
     if(this.selectedDate) {
       const dateTime = `${this.selectedDate} ${time}`;
       this.bookingDataService.setTimeDate(dateTime);
-      console.log('sending date and time',dateTime);
     }
-
-    console.log('Valt datum och tid', this.selectedDate, time);
   }
 
   getUpcomingDateForWeekday(weekday: string) : string {
@@ -124,7 +120,6 @@ export class DateTimeSelectComponent implements OnInit {
 
     return resultDate.toISOString().split('T')[0];
   }
-
   
   private isSameDate(d1: Date, d2:Date): boolean {
     return (
@@ -199,7 +194,6 @@ export class DateTimeSelectComponent implements OnInit {
 
   goToFinnishBooking(){
     if(!this.selectedTime) return;
-    console.log('Going to finnishBooking!');
     this.nextStep.emit();
   }
 }
