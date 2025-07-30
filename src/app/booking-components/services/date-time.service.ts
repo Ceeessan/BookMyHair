@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
 })
 export class DateTimeService {
 
-  // private apiUrl = 'https://bookmyhair-backend.onrender.com/api/dateTime';
+  private apiUrl = 'https://bookmyhair-backend.onrender.com/api/dateTime';
 
-  private apiUrl = 'http://localhost:5000/api/dateTime';
+  // private apiUrl = 'http://localhost:5000/api/dateTime';
 
   constructor( private http: HttpClient) { }
 

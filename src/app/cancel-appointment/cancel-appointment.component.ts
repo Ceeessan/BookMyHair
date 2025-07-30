@@ -38,7 +38,5 @@ export class CancelAppointmentComponent implements OnInit {
         this.isLoading = false;
       }
     })
-
   }
-
 }
