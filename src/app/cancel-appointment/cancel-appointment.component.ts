@@ -11,6 +11,8 @@ import { CancelAppointmentService } from '../booking-components/services/cancel-
 export class CancelAppointmentComponent implements OnInit {
   message: string ='';
   isLoading: boolean = true;
+  showInfoMessage: boolean = false;
+  isCancelled: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,19 +26,29 @@ export class CancelAppointmentComponent implements OnInit {
     if( !token || !email ) {
       this.message= 'Ogiltlig avbokningslänk.';
       this.isLoading = false;
+      this.showInfoMessage = true
       return;
     }
 
     this.cancelService.cancelBooking(token, email).subscribe({
       next: () => {
+        this.isCancelled = true;
         this.message = `Din bokning har avbokats!`;
         this.isLoading = false;
+        this.showInfoMessage = false;
       },
       error: (err) => {
         console.error(err);
+        this.isCancelled = false;
         this.message = `Avbokningen misslyckades. Bokningen kan vara ogiltlig eller avbokad.`;
         this.isLoading = false;
+        this.showInfoMessage = false;
       }
     })
+  }
+
+  showInfo() {
+    this.isLoading = false;
+    this.showInfoMessage = true;
   }
 }
