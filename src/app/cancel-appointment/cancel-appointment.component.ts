@@ -32,6 +32,7 @@ export class CancelAppointmentComponent implements OnInit {
 
     this.cancelService.cancelBooking(token, email).subscribe({
       next: (response) => {
+        console.log('Avbokning lyckades, svar:', response);
         this.isCancelled = true;
         this.message = response.message;
         this.isLoading = false;
