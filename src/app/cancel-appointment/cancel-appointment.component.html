@@ -1,18 +1,19 @@
 <div class="cancel-container">
 
-    <h3 *ngIf="showInfoMessage"> 
-      Avboka din tid med hjälp av mailet du fått. Vid problem, ring <strong>0701 233 456</strong> så kan vi hjälpa dig.
-    </h3>
-  
-    <h3 *ngIf="isCancelled && !isLoading">
-      {{ message }}
-    </h3>
-  
-    <h3 *ngIf="!isCancelled && !showInfoMessage && !isLoading">
-      {{ message }}
-    </h3>
-  
     <div *ngIf="isLoading">Avbokar din tid...</div>
+
+    <h3 *ngIf="showInfoMessage">
+        {{ message }}
+        <br />
+        Vid problem, av avbokining, ring <strong>0701 233 456</strong> så kan vi hjälpa dig.
+      </h3>
   
+      <h3 *ngIf="!isLoading && isCancelled">
+        {{ message }}
+      </h3>
+
+      <h3 *ngIf="!isLoading && !isCancelled && !showInfoMessage">
+        {{ message }}
+      </h3>
   </div>
   
