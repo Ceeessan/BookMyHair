@@ -31,16 +31,16 @@ export class CancelAppointmentComponent implements OnInit {
     }
 
     this.cancelService.cancelBooking(token, email).subscribe({
-      next: () => {
+      next: (response) => {
         this.isCancelled = true;
-        this.message = `Din bokning har avbokats!`;
+        this.message = response.message;
         this.isLoading = false;
         this.showInfoMessage = false;
       },
       error: (err) => {
         console.error(err);
         this.isCancelled = false;
-        this.message = `Avbokningen misslyckades. Bokningen kan vara ogiltlig eller avbokad.`;
+        this.message = err.error?.error || 'Avbokningen misslyckades.';
         this.isLoading = false;
         this.showInfoMessage = false;
       }
