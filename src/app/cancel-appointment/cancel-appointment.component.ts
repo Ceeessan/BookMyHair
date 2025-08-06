@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CancelAppointmentService } from '../booking-components/services/cancel-appointment.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-cancel-appointment',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './cancel-appointment.component.html',
   styleUrl: './cancel-appointment.component.scss'
 })
